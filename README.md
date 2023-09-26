@@ -5,7 +5,7 @@ semi-supervised learning
 file: `example_full_data.csv`
 
 - 3000 rows
-- 7 columns: (Y, S, X, W)
+- 6 columns: (Y, S, X, W)
   - Y: outcome/true phenotype, categorical data with 3 levels.
     - 1: No, 2: Yes, 3: Unknown. (1 is the reference level)
     - p(Y=1) ~ 5%
@@ -13,7 +13,7 @@ file: `example_full_data.csv`
   - S: surrogate phenotype, categorical data with 2 levels.
     - 1: No, 2: Yes. (1 is the reference level)
     - generated with p(s=1|y=1)=0.9, p(s=2|y=2)=0.9, p(s=1|y=3)=0.6
-  - X = (1, X1, X2, X3) covariates. 
+  - X = (X1, X2, X3) covariates. 
     - X1, X2 ~ N(0,1)
     - X3 ~ BER(0.5): indicate treatment/control
   - W: weights
