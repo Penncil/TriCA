@@ -17,7 +17,7 @@ file: `example_full_data.csv`
     - X1, X2 ~ N(0,1)
     - X3 ~ BER(0.5): indicate treatment/control
   - W: weights
-    - for S = 1, w = n0 / ns0 (# of sample from S=1 / # of obs with S=1)
-    - for S = 2, w = n1 / ns1 (# of sample from S=2 / # of obs with S=2)
+    - for S = 1, w = n0 / ns0 (# of sample from S=1 / # of obs with S=1) where n0 = 300
+    - for S = 2, w = n1 / ns1 (# of sample from S=2 / # of obs with S=2) where n1 = 300
 
 
