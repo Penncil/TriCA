@@ -2,6 +2,8 @@
 semi-supervised learning
 
 # Example Dataset
+file: `example_full_data.csv`
+
 - 3000 rows
 - 7 columns: (Y, S, X, W)
   - Y: outcome/true phenotype, categorical data with 3 levels.
