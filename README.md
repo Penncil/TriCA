@@ -11,7 +11,7 @@ semi-supervised learning
 ## Full Dataset
 
 - 3000 rows
-- 6 columns: (Y, S, X, W)
+- 6 columns: (Y, S, X)
   - Y: outcome/true phenotype, categorical data with 3 levels.
     - 1: No, 2: Yes, 3: Unknown. (1 is the reference level)
     - p(Y=2) ~ 5%
