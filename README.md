@@ -4,6 +4,10 @@ semi-supervised learning
 
 # Example Dataset
 
+`data_uniform_sampled.csv` & `data_outcome_dependent_sampled.csv` 
+
+
+
 ## Full Dataset
 
 - 3000 rows
@@ -18,26 +22,34 @@ semi-supervised learning
   - X = (X1, X2, X3) covariates. 
     - X1, X2 ~ N(0,1)
     - X3 ~ BER(0.5): indicate treatment/control
-  - W: weights [used in estimating `Aug.Biased`]
-    - for S = 1, w = n0 / ns0 (# of sample from S=1 / # of obs with S=1) where n0 = 300
-    - for S = 2, w = n1 / ns1 (# of sample from S=2 / # of obs with S=2) where n1 = 300
+
+
 
 ## Validation Dataset
 
-> From the SAME full dataset
+- Indicator : the `y` column of full dataset is set to be `NA` if it's not included in the validation.
+- the validation dataset are from the SAME full dataset
+
+
 
 ### 1 : uniform
 
+- Idea : sampling uniformly from full dataset
+
 - n_vu = 600 : number of observations in uniform validation set
 - rho = n_v/ n = 1/5
-- 
+
+
 
 ### 2 : outcome dependent
 
+- Idea : uniformly select n1 samples from the S-positive(S=2) patients and n0 samples the S-negative(S=1) patients to construct V
 - n_v = 600
   - n0 = 300 :  number of samples from S0 (S=1)
   - n1 = 300 : number of samples from S1 (S=2)
-- 
+- W: weights [calculated when estimating `Aug.Biased`]
+  - for S = 1, w = n0 / ns0 (# of sample from S=1 / # of obs with S=1) where n0 = 300
+  - for S = 2, w = n1 / ns1 (# of sample from S=2 / # of obs with S=2) where n1 = 300
 
 
 
