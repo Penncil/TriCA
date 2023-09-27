@@ -8,7 +8,7 @@ file: `example_full_data.csv`
 - 6 columns: (Y, S, X, W)
   - Y: outcome/true phenotype, categorical data with 3 levels.
     - 1: No, 2: Yes, 3: Unknown. (1 is the reference level)
-    - p(Y=1) ~ 5%
+    - p(Y=2) ~ 5%
     - generate from X with parameter beta = (-3.8, 1, 1, 1, 0.5, -0.4, 0.6, -1.6)
   - S: surrogate phenotype, categorical data with 2 levels.
     - 1: No, 2: Yes. (1 is the reference level)
