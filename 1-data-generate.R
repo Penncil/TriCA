@@ -88,12 +88,11 @@ id_v <- c(sample(id_s0,n0,replace = F),
 data_fv <- data
 data_fv[-id_v,'y'] <- NA
 summary(data_fv)
-# data_v <- data[id_v,]
 write.csv(data_fv,"data_outcome_dependent_sampled.csv",row.names = FALSE)
 
 
 id_vu <- sample(1:n,n_v,replace = F)
 data_fvu <- data
-data_fvu[-id_vu,'y'] <- NA
-# data_vu <- data[id_vu,]
+data_fvu$W <- NULL
+data_fvu[-id_vu,'y'] <- NAs
 write.csv(data_fvu,"data_uniform_sampled.csv",row.names = FALSE)
