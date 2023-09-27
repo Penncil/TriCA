@@ -4,7 +4,7 @@ semi-supervised learning
 
 # Example Dataset
 
-`data_uniform_sampled.csv` & `data_outcome_dependent_sampled.csv` 
+file: [data_outcome_dependent_sampled.csv](https://github.com/Penncil/SSL/blob/master/data_outcome_dependent_sampled.csv) and [data_uniform_sampled.csv](https://github.com/Penncil/SSL/blob/master/data_uniform_sampled.csv)
 
 
 
@@ -53,4 +53,4 @@ semi-supervised learning
 
 
 
-file: [data_outcome_dependent_sampled.csv](https://github.com/Penncil/SSL/blob/master/data_outcome_dependent_sampled.csv) and [data_uniform_sampled.csv](https://github.com/Penncil/SSL/blob/master/data_uniform_sampled.csv)
+
