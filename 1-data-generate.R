@@ -63,11 +63,11 @@ S <- rbinom(n,1,p_s1) + 1 # (0,1) -> (1,2)
 table(S,y) # check
 
 # 7. weight W (n*1)
-n_s0 <- sum(S==1)
-n_s1 <- sum(S==2)
-h0 <- n0/n_s0
-h1 <- n1/n_s1
-W <- ifelse(S==1,h0,h1)
+# n_s0 <- sum(S==1)
+# n_s1 <- sum(S==2)
+# h0 <- n0/n_s0
+# h1 <- n1/n_s1
+# W <- ifelse(S==1,h0,h1)
 
 # 5. format & combine
 data <- data.frame(cbind(y,S,X,W))
@@ -87,6 +87,7 @@ id_v <- c(sample(id_s0,n0,replace = F),
 
 data_fv <- data
 data_fv[-id_v,'y'] <- NA
+data_fv$W <- NULL
 summary(data_fv)
 write.csv(data_fv,"data_outcome_dependent_sampled.csv",row.names = FALSE)
 

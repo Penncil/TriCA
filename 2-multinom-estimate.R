@@ -1,3 +1,4 @@
+# rm(list=ls())
 # -------------- Library  ---------------
 library(geex)
 library(mvtnorm)
@@ -13,7 +14,7 @@ library(data.table)
 library(stringr)
 
 # -------------- Functions  ---------------
-rm(list = ls())
+
 
 Aug.Unif.estimate <- function(data, 
                               formula_S = S~x1+x2+x3,
@@ -104,21 +105,34 @@ Aug.Unif.estimate <- function(data,
 
 
 
-
 Aug.Bias.estimate <- function(data, 
+                              n0=300,
+                              n1=300,
                               formula_S = S~x1+x2+x3,
                               formula_Y = y~x1+x2+x3){
   #### 0. Parameters & Validation Data ####
   # data = data_fv
+  # n0=300
+  # n1=300
   # formula_S = S~x1+x2+x3
   # formula_Y = y~x1+x2+x3
+  
+  n_s0 <- sum(data$S==1)
+  n_s1 <- sum(data$S==2)
+  h0 <- n0/n_s0
+  h1 <- n1/n_s1
+  data$W <- ifelse(data$S==1,h0,h1)
   
   n = nrow(data)
   data_v <- data[!is.na(data$y),]
   n_v <- nrow(data_v)
+  # assertthat::are_equal(n_v,n0+n1)
   
   K = nlevels(data$y) 
   k = K-1
+  
+
+  
   
   #### 1.2 [Aug-Bias | OSCA] #### 
   # 1.2.1 (sv) S~X in V -> gamma_v -> ph2
