@@ -1,6 +1,6 @@
-# SSL
+# TriCA
 
-semi-supervised learning
+Trinary chart-reviewed phenotype integrated cost-effective augmented estimation
 
 # Example Dataset
 
