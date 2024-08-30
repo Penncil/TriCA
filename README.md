@@ -4,7 +4,7 @@ Trinary chart-reviewed phenotype integrated cost-effective augmented estimation
 
 # Outline
 1. Description
-2. TriCA workflow
+2. TriCA Overview
 3. Example Dataset
 
 # Description
@@ -21,6 +21,9 @@ To demonstrate its effectiveness (as discussed in the SIMULATION STUDY section o
 | What is Already Known | Electronic health records are a valuable resource for identifying risk factors through association studies. While phenotyping algorithms are efficient for obtaining clinical outcomes, they can be error prone. Manual chart review, considered the gold standard, provides unbiased estimates but is labor-intensive and limited to a small subset of patients, potentially introducing ‘undecided’ cases. Existing methods often discard these indeterminate cases, which can reduce the efficiency of estimates, particularly in rare event conditions.|
 | What this Paper Adds | We develop an augmented estimator, TriCA, that optimally combines the algorithm-derived binary phenotypes with the chart-review trinary phenotypes selected through a biased sampling strategy. By incorporating the undecided cases from manual chart review, TriCA provides unbiased estimates with higher statistical efficiency compared to existing methods. | 
 
+# TriCA Overview
+
+![](Visual Abstract.png)
 
 # Example Dataset
 
