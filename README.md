@@ -37,7 +37,7 @@ file: [data_outcome_dependent_sampled.csv](https://github.com/Penncil/SSL/blob/m
 - 3000 rows
 - 6 columns: (Y, S, X)
   - Y: outcome/true phenotype, categorical data with 3 levels.
-    - 1: No, 2: Yes, 3: Unknown. (1 is the reference level)
+    - 1: No, 2: Yes, 3: Unknown. (1 is the reference level) which is different from the manuscript where 0:No, 1:Yes, 2:Unknown. 
     - p(Y=2) ~ 5%
     - generate from X with parameter beta = (-3.8, 1, 1, 1, 0.5, -0.4, 0.6, -1.6)
   - S: surrogate phenotype, categorical data with 2 levels.
