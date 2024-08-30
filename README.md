@@ -11,7 +11,7 @@ Trinary chart-reviewed phenotype integrated cost-effective augmented estimation
 
 This README is for the journal peer review of the TriCA paper, which introduces a method for cost-effective, augmented estimation in association studies. The TriCA method is particularly useful when 'undecided' cases arise during manual chart reviews. It optimally combines binary algorithm-derived phenotypes for the entire cohort with trinary chart-reviewed phenotypes from a small subset, selected through outcome-dependent sampling. This approach offers unbiased estimates with greater efficiency compared to existing methods.
 
-To demonstrate its effectiveness (similar as discussed in the SIMULATION STUDY section of the paper), we use simulated data from 3,000 patients to analyze the association of two continuous covariates and one treatment indicator. Method 3 (which modifies the proposed approach in Tong et al. (2020)) and the proposed TriCA method are implemented in the 2-multinom-estimate.R file by functions `Aug.Unif.estimate` and `Aug.Bias.estimate` respectively. 
+To demonstrate its effectiveness (similar as discussed in the SIMULATION STUDY section of the paper), we use simulated data from 3,000 patients to analyze the association of two continuous covariates and one treatment indicator. Method 3 (which modifies the proposed approach in Tong et al. (2020)) and the proposed TriCA method are implemented in the `2-multinom-estimate.R` file by functions `Aug.Unif.estimate` and `Aug.Bias.estimate` respectively. 
 
 **Statement of significance**
 
