@@ -2,6 +2,26 @@
 
 Trinary chart-reviewed phenotype integrated cost-effective augmented estimation
 
+# Outline
+1. Description
+2. TriCA workflow
+3. Example Dataset
+
+# Description
+
+This README is for the journal peer review of the TriCA paper, which introduces a method for cost-effective, augmented estimation in association studies. The TriCA method is particularly useful when 'undecided' cases arise during manual chart reviews. It optimally combines binary algorithm-derived phenotypes for the entire cohort with trinary chart-reviewed phenotypes from a small subset, selected through outcome-dependent sampling. This approach offers unbiased estimates with greater efficiency compared to existing methods.
+
+To demonstrate its effectiveness (as discussed in the SIMULATION STUDY section of the paper), we use simulated data from 3,000 patients to analyze the association of two continuous covariates and one treatment indicator.
+
+**Statement of significance**
+
+| Summary | Description |
+| ------- | ----------- |
+| Problem | No methods have been proposed to include ‘undecided’ records from manual chart review phenotypes when identifying risk factors in association studies, particularly in rare disease scenarios|
+| What is Already Known | Electronic health records are a valuable resource for identifying risk factors through association studies. While phenotyping algorithms are efficient for obtaining clinical outcomes, they can be error prone. Manual chart review, considered the gold standard, provides unbiased estimates but is labor-intensive and limited to a small subset of patients, potentially introducing ‘undecided’ cases. Existing methods often discard these indeterminate cases, which can reduce the efficiency of estimates, particularly in rare event conditions.|
+| What this Paper Adds | We develop an augmented estimator, TriCA, that optimally combines the algorithm-derived binary phenotypes with the chart-review trinary phenotypes selected through a biased sampling strategy. By incorporating the undecided cases from manual chart review, TriCA provides unbiased estimates with higher statistical efficiency compared to existing methods. | 
+
+
 # Example Dataset
 
 file: [data_outcome_dependent_sampled.csv](https://github.com/Penncil/SSL/blob/master/data_outcome_dependent_sampled.csv) and [data_uniform_sampled.csv](https://github.com/Penncil/SSL/blob/master/data_uniform_sampled.csv)
