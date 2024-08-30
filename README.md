@@ -23,7 +23,7 @@ To demonstrate its effectiveness (as discussed in the SIMULATION STUDY section o
 
 # TriCA Overview
 
-<img src="Visual Abstract.png" alt="isual Abstract for TriCA method" width="800">
+<img src="Visual Abstract.png" alt="isual Abstract for TriCA method" width="1000">
 
 
 # Example Dataset
