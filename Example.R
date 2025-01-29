@@ -120,8 +120,10 @@ fn_oracle <- function(fdata,xchar,ychar){
 }
 
 
-# biased sampling
-fn_yin2021 <- function(fdata,xchar,ychar,schar){
+# biased sampling (method 2 & TriCA)
+# method 2: Y~X on V
+# TriCA: augmented on V
+fn_bias <- function(fdata,xchar,ychar,schar){
   # fdata = tmpv
   # xchar = c('x1','x2')
   # ychar = 'y'
@@ -190,82 +192,11 @@ fn_yin2021 <- function(fdata,xchar,ychar,schar){
   return(list('VT' = VTres, 'BA' = BAres))
 }
 
-# biased sampling (TODO)
-{
-  fn_test <- function(fdata,xchar,ychar,schar){
-    # fdata = tmpv
-    # xchar = c('x1','x2')
-    # ychar = 'y'
-    # schar = 's'
-    
-    fy = fdata[[ychar]]
-    # TODO: to be checked (for the `multinom`)
-    if(!is.factor(fy)){fdata[[ychar]] = factor(fy)}
-    # fy = fdata[[ychar]]
-    fs = fdata[[schar]]
-    
-    vdata = subset(fdata, subset = !is.na(fy))
-    # vy = vdata[[ychar]]
-    vs = vdata[[schar]]
-    
-    N = nrow(fdata)
-    n = nrow(vdata)
-    
-    fmly <- reformulate(xchar,response = ychar)
-    fmls <- reformulate(xchar,response = schar)
-    
-    ## Models
-    ### Validation set; true outcomes
-    VTmd <- multinom(fmly,data = vdata,Hess = TRUE,trace=FALSE)
-    BV = coef(VTmd)
-    BVV = vcov(VTmd)
-    Vdm = model.matrix(VTmd)
-    VTres = list("coef" = c(t(BV)),"std"=sqrt(diag(BVV))) # to be returned to compare
-    
-    ### Validation set; surrogate outcomes
-    VSmd = glm(fmls, data = vdata,family = "binomial")
-    GV = coef(VSmd)
-    GVV = vcov(VSmd) # similar to GFV
-    
-    ### Full set; surrogate outcomes
-    # fdata$swts = fs + (sum(1 - vs) / sum(1 - fs)) / (sum(vs) / sum(fs)) * (1 - fs)
-    w = (sum(vs) / sum(fs)) * fs + (sum(1 - vs) / sum(1 - fs)) * (1 - fs)
-    # w = fs + (sum(1 - vs) / sum(1 - fs)) / (sum(vs) / sum(fs)) * (1 - fs)
-    FSmd = glm(fmls, data = fdata, family = "binomial", weights = w)
-    GF = coef(FSmd)
-    GFV = vcov(FSmd)
-    Fdm = model.matrix(FSmd)
-    
-    ## Score functions
-    # score function for beta (full)
-    VTp = VTmd$fitted.values
-    VTy = model.matrix(~ vdata[[ychar]] - 1)
-    VTr = (VTy - VTp)[,-1]
-    lv = sapply(1:n,function(i){c(VTr[i,]) %x% c(Vdm[i,])}) #  %>% t()
-    
-    # score function for gamma (full)
-    gv = (vs - VSmd$fitted.values) * Vdm
-    gf = w * (fs - FSmd$fitted.values) * Fdm
-    
-    ## Matrix
-    Uinv = BVV * n # 6*6
-    C12 = lv %*% gv/ n # 6*3
-    Vv = t(gv) %*% gv / n # 3*3
-    Uv = solve(GVV * n) # 3*3
-    
-    cu = n/N
-    cv = (sum(vs) / sum(fs)) * (sum(1 - vs) / sum(1 - fs))
-    
-    BA = c(t(BV)) - Uinv %*% C12 %*% solve(Vv) %*% Uv %*% (GV - GF)
-    BAV =(Uinv - (1 - cv / cu) * Uinv %*% C12 %*% solve(Vv) %*% t(C12) %*% Uinv) / n
-    BAres = list("coef" = c(t(BA)),"std"=sqrt(diag(BAV)))
-    
-    return(list('VT' = VTres, 'BA' = BAres))
-  }
-}
 
-# random sampling # TODO
-fn_chen2002 <- function(fdata,xchar,ychar,schar){
+# random sampling (method 1 & 3)
+# method 1: Y~X on U
+# method 3: augmented on U
+fn_random <- function(fdata,xchar,ychar,schar){
   # fdata = tmpv
   # xchar = c('x1','x2')
   # ychar = 'y'
@@ -330,4 +261,25 @@ fn_chen2002 <- function(fdata,xchar,ychar,schar){
   UAres = list("coef" = c(t(UA)),"std"=sqrt(diag(UAV)))
   return(list('UT' = UTres, 'UA' = UAres))
 }
+
+
+# --- Example ------------
+
+# true beta
+BT = c(-2.75,1.00,1.00,-0.70,1.70,-0.20) # BT=beta true; p(y=1)=0.07
+
+# data generation
+df = fn_dataGenF(beta = BT,seed=6) 
+dv = fn_dataGenV(df,n0=300,n1=300)
+du = fn_dataGenU(df,n=600)
+
+# estimators 
+Roral = fn_oracle(df,c('x1','x2'),'y')
+Rrand = fn_random(du,c('x1','x2'),'y','s') 
+Rbias = fn_bias(dv,c('x1','x2'),'y','s')   
+
+# results
+Roral
+Rrand # UT=method 1; UA=method 3
+Rbias # VT=method 2; BA=TriCA
 
