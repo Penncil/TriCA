@@ -269,7 +269,7 @@ fn_random <- function(fdata,xchar,ychar,schar){
 BT = c(-2.75,1.00,1.00,-0.70,1.70,-0.20) # BT=beta true; p(y=1)=0.07
 
 # data generation
-df = fn_dataGenF(beta = BT,seed=6) 
+df = fn_dataGenF(beta = BT,seed=2025) 
 dv = fn_dataGenV(df,n0=300,n1=300)
 du = fn_dataGenU(df,n=600)
 
